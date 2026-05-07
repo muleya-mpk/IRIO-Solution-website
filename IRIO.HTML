@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Irio Seeds & AgroChem | Gaborone, Botswana</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,500;1,400&family=Nunito+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --green-dark:#1a4a1a;--green-mid:#2d7a2d;--green:#3a9e3a;--green-light:#5cba5c;
+            --green-pale:#e8f5e8;--earth:#8b6914;--earth-light:#c49a20;--cream:#faf7f0;
+            --white:#ffffff;--charcoal:#1c1c1c;--gray:#6b6b6b;--light-gray:#ebebeb;--border:#d8d8d0;
+        }
+        *{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
+        body{font-family:'Nunito Sans',sans-serif;background:var(--cream);color:var(--charcoal);overflow-x:hidden;}
+        ::-webkit-scrollbar{width:5px;}::-webkit-scrollbar-track{background:var(--cream);}::-webkit-scrollbar-thumb{background:var(--green-mid);border-radius:3px;}
+
+        nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 6%;height:72px;background:var(--green-dark);border-bottom:3px solid var(--green-light);}
+        .nav-logo{display:flex;align-items:center;gap:14px;text-decoration:none;}
+        .nav-logo img{height:46px;width:46px;object-fit:contain;filter:drop-shadow(0 2px 4px rgba(0,0,0,0.3));}
+        .nav-logo-words .top{display:block;font-family:'Oswald',sans-serif;font-size:1.1rem;font-weight:600;color:var(--white);letter-spacing:1px;text-transform:uppercase;}
+        .nav-logo-words .bottom{display:block;font-size:0.62rem;color:var(--green-light);letter-spacing:2px;text-transform:uppercase;font-weight:600;}
+        .nav-links{display:flex;align-items:center;gap:32px;list-style:none;}
+        .nav-links a{text-decoration:none;color:rgba(255,255,255,0.75);font-size:0.78rem;letter-spacing:1.5px;text-transform:uppercase;font-weight:600;transition:color 0.3s;}
+        .nav-links a:hover{color:var(--green-light);}
+        .nav-wa{display:flex!important;align-items:center;gap:8px;background:#25D366!important;color:white!important;padding:8px 18px;border-radius:4px;font-weight:700!important;transition:background 0.3s!important;}
+        .nav-wa:hover{background:#1db954!important;}
+        .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;}
+        .hamburger span{display:block;width:26px;height:2px;background:white;transition:0.3s;}
+        .mobile-menu{display:none;position:fixed;top:72px;left:0;right:0;background:var(--green-dark);z-index:99;padding:20px 6%;border-bottom:2px solid var(--green-light);}
+        .mobile-menu.open{display:block;}
+        .mobile-menu a{display:block;padding:13px 0;color:rgba(255,255,255,0.75);text-decoration:none;font-size:0.82rem;letter-spacing:1.5px;text-transform:uppercase;font-weight:600;border-bottom:1px solid rgba(255,255,255,0.07);transition:color 0.3s;}
+        .mobile-menu a:hover{color:var(--green-light);}
+
+        .hero{min-height:100vh;background:var(--green-dark);position:relative;display:flex;align-items:center;overflow:hidden;padding-top:72px;}
+        .hero-field{position:absolute;inset:0;overflow:hidden;pointer-events:none;}
+        .field-line{position:absolute;bottom:0;width:2px;background:linear-gradient(to top,rgba(90,186,90,0.2),transparent);animation:grow 3s ease-out forwards;}
+        @keyframes grow{from{height:0;opacity:0;}to{height:var(--h);opacity:1;}}
+        .hero-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(26,74,26,0.96) 0%,rgba(26,74,26,0.55) 60%,rgba(26,74,26,0.15) 100%);}
+        .hero-content{position:relative;z-index:2;padding:60px 6%;max-width:700px;}
+        .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(90,186,90,0.12);border:1px solid rgba(90,186,90,0.25);padding:6px 16px;border-radius:20px;margin-bottom:28px;}
+        .hero-badge span{font-size:0.7rem;letter-spacing:2px;text-transform:uppercase;color:var(--green-light);font-weight:700;}
+        .hero-badge i{color:var(--green-light);font-size:0.7rem;}
+        .hero-title{font-family:'Oswald',sans-serif;font-size:clamp(3rem,6vw,5.5rem);font-weight:700;color:var(--white);line-height:1.0;text-transform:uppercase;letter-spacing:2px;margin-bottom:8px;}
+        .hero-title .accent{color:var(--green-light);}
+        .hero-sub-italic{font-family:'Lora',serif;font-style:italic;font-size:clamp(1rem,2vw,1.4rem);color:rgba(255,255,255,0.55);margin-bottom:28px;}
+        .hero-desc{font-size:0.95rem;color:rgba(255,255,255,0.5);line-height:1.8;max-width:500px;margin-bottom:40px;font-weight:300;}
+        .hero-actions{display:flex;gap:16px;flex-wrap:wrap;align-items:center;}
+        .btn-green{display:inline-flex;align-items:center;gap:10px;background:var(--green);color:white;padding:14px 28px;border-radius:4px;text-decoration:none;font-weight:700;font-size:0.82rem;letter-spacing:1px;text-transform:uppercase;transition:all 0.3s;border:none;cursor:pointer;}
+        .btn-green:hover{background:var(--green-light);transform:translateY(-2px);box-shadow:0 8px 24px rgba(58,158,58,0.3);}
+        .btn-wa-hero{display:inline-flex;align-items:center;gap:10px;background:#25D366;color:white;padding:14px 28px;border-radius:4px;text-decoration:none;font-weight:700;font-size:0.82rem;letter-spacing:1px;text-transform:uppercase;transition:all 0.3s;}
+        .btn-wa-hero:hover{background:#1db954;transform:translateY(-2px);}
+        .hero-stats{display:flex;gap:0;margin-top:52px;padding-top:28px;border-top:1px solid rgba(255,255,255,0.08);}
+        .hero-stat{flex:1;padding-right:28px;border-right:1px solid rgba(255,255,255,0.08);margin-right:28px;}
+        .hero-stat:last-child{border-right:none;margin-right:0;}
+        .hero-stat .num{font-family:'Oswald',sans-serif;font-size:2.2rem;color:var(--green-light);font-weight:700;line-height:1;}
+        .hero-stat .lbl{font-size:0.7rem;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-top:4px;}
+
+        .cat-strip{background:var(--white);display:grid;grid-template-columns:repeat(5,1fr);border-bottom:3px solid var(--green-pale);}
+        .cat-item{padding:28px 16px;display:flex;flex-direction:column;align-items:center;gap:10px;border-right:1px solid var(--border);cursor:pointer;transition:background 0.3s;text-decoration:none;}
+        .cat-item:last-child{border-right:none;}
+        .cat-item:hover{background:var(--green-pale);}
+        .cat-icon{width:48px;height:48px;background:var(--green-pale);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:background 0.3s;}
+        .cat-item:hover .cat-icon{background:var(--green);}
+        .cat-icon i{color:var(--green-mid);font-size:1.1rem;transition:color 0.3s;}
+        .cat-item:hover .cat-icon i{color:white;}
+        .cat-label{font-family:'Oswald',sans-serif;font-size:0.78rem;letter-spacing:1px;text-transform:uppercase;color:var(--charcoal);font-weight:500;text-align:center;}
+
+        section{padding:90px 6%;}
+        .sec-eyebrow{font-size:0.7rem;letter-spacing:3px;text-transform:uppercase;color:var(--green-mid);font-weight:700;display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+        .sec-eyebrow::before{content:'';width:28px;height:2px;background:var(--green-mid);}
+        .sec-title{font-family:'Oswald',sans-serif;font-size:clamp(2rem,4vw,3.2rem);font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--charcoal);line-height:1.1;margin-bottom:16px;}
+        .sec-title .green{color:var(--green-mid);}
+
+        #about{background:var(--cream);display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+        .about-body{color:var(--gray);line-height:1.9;font-size:0.95rem;font-weight:300;margin-bottom:24px;}
+        .about-features{display:flex;flex-direction:column;gap:14px;}
+        .about-feat{display:flex;gap:14px;align-items:flex-start;padding:16px;background:var(--white);border-left:3px solid var(--green);transition:border-color 0.3s;}
+        .about-feat:hover{border-color:var(--earth-light);}
+        .about-feat i{color:var(--green);font-size:1rem;margin-top:2px;flex-shrink:0;}
+        .about-feat h4{font-family:'Oswald',sans-serif;font-size:0.88rem;letter-spacing:0.5px;text-transform:uppercase;color:var(--charcoal);margin-bottom:3px;}
+        .about-feat p{font-size:0.78rem;color:var(--gray);line-height:1.5;}
+        .about-visual-box{background:var(--green-dark);padding:52px 40px;position:relative;overflow:hidden;}
+        .about-visual-box::before{content:'';position:absolute;top:0;right:0;width:200px;height:200px;background:radial-gradient(circle,rgba(90,186,90,0.1),transparent 70%);}
+        .about-logo-display{display:flex;flex-direction:column;align-items:center;gap:22px;position:relative;z-index:1;}
+        .about-logo-display img{width:130px;height:130px;object-fit:contain;}
+        .about-company-name{font-family:'Oswald',sans-serif;font-size:1.5rem;font-weight:700;color:var(--white);text-transform:uppercase;letter-spacing:2px;text-align:center;line-height:1.2;}
+        .about-company-name span{color:var(--green-light);}
+        .about-tagline{font-family:'Lora',serif;font-style:italic;color:rgba(255,255,255,0.45);font-size:0.92rem;text-align:center;}
+        .about-address{background:rgba(255,255,255,0.05);padding:20px 24px;width:100%;display:flex;flex-direction:column;gap:10px;border:1px solid rgba(255,255,255,0.08);}
+        .about-address span{font-size:0.78rem;color:rgba(255,255,255,0.5);display:flex;align-items:center;gap:10px;}
+        .about-address i{color:var(--green-light);width:14px;}
+
+        #products{background:var(--white);}
+        .products-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:44px;flex-wrap:wrap;gap:20px;}
+        .products-note{font-family:'Lora',serif;font-style:italic;color:var(--gray);font-size:0.88rem;max-width:360px;line-height:1.6;}
+        .filter-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:36px;}
+        .filter-tab{padding:8px 20px;background:var(--cream);border:1px solid var(--border);font-size:0.75rem;letter-spacing:1.5px;text-transform:uppercase;font-weight:700;color:var(--gray);cursor:pointer;transition:all 0.3s;border-radius:3px;}
+        .filter-tab.active,.filter-tab:hover{background:var(--green-dark);color:white;border-color:var(--green-dark);}
+        .products-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+        .product-card{background:var(--cream);border:1px solid var(--border);transition:all 0.3s;position:relative;overflow:hidden;}
+        .product-card:hover{border-color:var(--green);transform:translateY(-4px);box-shadow:0 12px 32px rgba(42,122,42,0.1);}
+        .product-img{aspect-ratio:1;background:var(--green-pale);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+        .product-img i{font-size:3rem;color:var(--green-mid);opacity:0.25;}
+        .product-img img{width:100%;height:100%;object-fit:cover;transition:transform 0.5s;}
+        .product-card:hover .product-img img{transform:scale(1.06);}
+        .product-cat-tag{position:absolute;top:12px;left:12px;font-size:0.6rem;letter-spacing:1.5px;text-transform:uppercase;padding:4px 10px;background:var(--green-dark);color:white;font-weight:700;border-radius:2px;}
+        .product-body{padding:20px;}
+        .product-name{font-family:'Oswald',sans-serif;font-size:1rem;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;color:var(--charcoal);margin-bottom:6px;}
+        .product-desc{font-size:0.78rem;color:var(--gray);line-height:1.5;margin-bottom:16px;font-weight:300;}
+        .product-footer{display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--border);padding-top:14px;}
+        .product-price{font-family:'Oswald',sans-serif;font-size:1.2rem;font-weight:700;color:var(--green-mid);}
+        .product-price .unit{font-size:0.7rem;color:var(--gray);font-weight:400;font-family:'Nunito Sans',sans-serif;}
+        .product-enquire{font-size:0.68rem;letter-spacing:1px;text-transform:uppercase;color:var(--green-mid);font-weight:700;cursor:pointer;display:flex;align-items:center;gap:5px;text-decoration:none;transition:color 0.3s;}
+        .product-enquire:hover{color:var(--green);}
+
+        .price-banner{background:var(--green-dark);padding:52px 6%;display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap;}
+        .price-banner-text h3{font-family:'Oswald',sans-serif;font-size:clamp(1.4rem,3vw,2.2rem);font-weight:700;text-transform:uppercase;color:var(--white);margin-bottom:8px;letter-spacing:1px;}
+        .price-banner-text p{font-size:0.88rem;color:rgba(255,255,255,0.5);max-width:460px;line-height:1.6;}
+        .price-banner-actions{display:flex;gap:14px;flex-wrap:wrap;flex-shrink:0;}
+        .btn-wa-lg{display:inline-flex;align-items:center;gap:10px;background:#25D366;color:white;padding:16px 32px;border-radius:4px;text-decoration:none;font-weight:700;font-size:0.85rem;letter-spacing:1px;text-transform:uppercase;transition:all 0.3s;}
+        .btn-wa-lg:hover{background:#1db954;transform:translateY(-2px);}
+        .btn-outline-white{display:inline-flex;align-items:center;gap:10px;border:2px solid rgba(255,255,255,0.25);color:rgba(255,255,255,0.75);padding:16px 32px;border-radius:4px;text-decoration:none;font-weight:700;font-size:0.85rem;letter-spacing:1px;text-transform:uppercase;transition:all 0.3s;}
+        .btn-outline-white:hover{border-color:var(--green-light);color:var(--green-light);}
+
+        #contact{background:var(--cream);}
+        .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;}
+        .contact-cards{display:flex;flex-direction:column;gap:14px;margin-bottom:28px;}
+        .contact-card{background:var(--white);padding:22px 26px;display:flex;gap:20px;align-items:center;border:1px solid var(--border);text-decoration:none;transition:all 0.3s;}
+        .contact-card:hover{border-color:var(--green);transform:translateX(6px);}
+        .contact-card-icon{width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.1rem;}
+        .cc-wa{background:rgba(37,211,102,0.1);color:#25D366;}
+        .cc-phone{background:rgba(58,158,58,0.1);color:var(--green-mid);}
+        .cc-email{background:rgba(26,74,26,0.08);color:var(--green-dark);}
+        .cc-loc{background:rgba(139,105,20,0.1);color:var(--earth);}
+        .contact-card-text h4{font-family:'Oswald',sans-serif;font-size:0.72rem;letter-spacing:2px;text-transform:uppercase;color:var(--gray);margin-bottom:4px;}
+        .contact-card-text p{font-size:0.92rem;color:var(--charcoal);font-weight:600;line-height:1.4;}
+        .map-box{background:var(--green-dark);aspect-ratio:4/3;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;position:relative;overflow:hidden;}
+        .map-box::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,rgba(255,255,255,0.02) 0px,rgba(255,255,255,0.02) 1px,transparent 1px,transparent 20px);}
+        .map-box i{font-size:3.5rem;color:var(--green-light);opacity:0.75;position:relative;z-index:1;}
+        .map-addr{text-align:center;font-family:'Oswald',sans-serif;font-size:1rem;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.65);padding:0 20px;line-height:1.6;position:relative;z-index:1;}
+        .map-addr span{display:block;font-size:0.68rem;color:var(--green-light);letter-spacing:2px;margin-bottom:6px;}
+
+        footer{background:var(--green-dark);padding:56px 6% 28px;border-top:4px solid var(--green);}
+        .footer-top{display:grid;grid-template-columns:2fr 1fr 1fr;gap:60px;margin-bottom:44px;padding-bottom:44px;border-bottom:1px solid rgba(255,255,255,0.06);}
+        .footer-brand-logo{display:flex;align-items:center;gap:14px;margin-bottom:16px;}
+        .footer-brand-logo img{width:50px;height:50px;object-fit:contain;}
+        .footer-brand-logo .fn{display:block;font-family:'Oswald',sans-serif;font-size:1rem;font-weight:700;color:var(--white);text-transform:uppercase;letter-spacing:1px;}
+        .footer-brand-logo .fs{display:block;font-size:0.6rem;color:var(--green-light);letter-spacing:2px;text-transform:uppercase;}
+        .footer-brand p{font-size:0.82rem;color:rgba(255,255,255,0.38);line-height:1.8;max-width:270px;}
+        .footer-col h4{font-family:'Oswald',sans-serif;font-size:0.78rem;letter-spacing:2px;text-transform:uppercase;color:var(--green-light);margin-bottom:18px;font-weight:600;}
+        .footer-links{list-style:none;display:flex;flex-direction:column;gap:10px;}
+        .footer-links a{font-size:0.82rem;color:rgba(255,255,255,0.38);text-decoration:none;transition:color 0.3s;display:flex;align-items:center;gap:8px;}
+        .footer-links a:hover{color:var(--green-light);}
+        .footer-links i{font-size:0.7rem;color:var(--green-mid);width:14px;}
+        .footer-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+        .footer-bottom p{font-size:0.75rem;color:rgba(255,255,255,0.22);}
+        .footer-wa-btn{display:inline-flex;align-items:center;gap:8px;background:#25D366;color:white;padding:10px 22px;border-radius:4px;text-decoration:none;font-weight:700;font-size:0.78rem;letter-spacing:1px;text-transform:uppercase;transition:background 0.3s;}
+        .footer-wa-btn:hover{background:#1db954;}
+
+        .fade-up{opacity:0;transform:translateY(28px);transition:opacity 0.7s ease,transform 0.7s ease;}
+        .fade-up.visible{opacity:1;transform:translateY(0);}
+
+        @media(max-width:1100px){.products-grid{grid-template-columns:repeat(3,1fr);}}
+        @media(max-width:900px){#about{grid-template-columns:1fr;gap:40px;}.contact-grid{grid-template-columns:1fr;}.footer-top{grid-template-columns:1fr 1fr;}.cat-strip{grid-template-columns:repeat(3,1fr);}.products-grid{grid-template-columns:repeat(2,1fr);}}
+        @media(max-width:700px){.nav-links{display:none;}.hamburger{display:flex;}section{padding:70px 5%;}.cat-strip{grid-template-columns:repeat(2,1fr);}.products-grid{grid-template-columns:1fr 1fr;}.price-banner{flex-direction:column;text-align:center;}.footer-top{grid-template-columns:1fr;gap:36px;}.hero-stats{flex-direction:column;gap:20px;}.hero-stat{border-right:none;border-bottom:1px solid rgba(255,255,255,0.08);padding-bottom:18px;margin-right:0;padding-right:0;}.hero-stat:last-child{border-bottom:none;}}
+        @media(max-width:480px){.products-grid{grid-template-columns:1fr;}}
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="#home" class="nav-logo">
+        <img src="1000630561.jpg" alt="Irio Logo">
+        <div class="nav-logo-words">
+            <span class="top">Irio Seeds</span>
+            <span class="bottom">&amp; AgroChem · Botswana</span>
+        </div>
+    </a>
+    <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#products">Products</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="https://wa.me/26771381526" target="_blank" class="nav-wa"><i class="fab fa-whatsapp"></i> WhatsApp Us</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+    <a href="#about" onclick="closeMobile()">About</a>
+    <a href="#products" onclick="closeMobile()">Products</a>
+    <a href="#contact" onclick="closeMobile()">Contact</a>
+    <a href="https://wa.me/26771381526" target="_blank" onclick="closeMobile()"><i class="fab fa-whatsapp"></i> WhatsApp Us</a>
+</div>
+
+<section id="home" class="hero" style="padding-left:6%;padding-right:6%;">
+    <div class="hero-field" id="heroField"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+        <div class="hero-badge"><i class="fas fa-seedling"></i><span>Phakalane Industrial · Gaborone, Botswana</span></div>
+        <h1 class="hero-title">Irio <span class="accent">Seeds</span><br>&amp; Agro<span class="accent">Chem</span></h1>
+        <p class="hero-sub-italic">Your trusted agricultural distributor</p>
+        <p class="hero-desc">We supply quality seeds, fertilizers, herbicides, insecticides and fungicides to farmers and agribusinesses across Botswana. Reliable supply. Competitive prices. Expert advice.</p>
+        <div class="hero-actions">
+            <a href="#products" class="btn-green"><i class="fas fa-leaf"></i> Browse Products</a>
+            <a href="https://wa.me/26771381526" target="_blank" class="btn-wa-hero"><i class="fab fa-whatsapp"></i> Chat on WhatsApp</a>
+        </div>
+        <div class="hero-stats">
+            <div class="hero-stat"><div class="num">5+</div><div class="lbl">Product Categories</div></div>
+            <div class="hero-stat"><div class="num">1K+</div><div class="lbl">Customers Served</div></div>
+            <div class="hero-stat"><div class="num">BWA</div><div class="lbl">Botswana Based</div></div>
+        </div>
+    </div>
+</section>
+
+<div class="cat-strip">
+    <a href="#products" class="cat-item"><div class="cat-icon"><i class="fas fa-seedling"></i></div><span class="cat-label">Seeds</span></a>
+    <a href="#products" class="cat-item"><div class="cat-icon"><i class="fas fa-flask"></i></div><span class="cat-label">Fertilizers</span></a>
+    <a href="#products" class="cat-item"><div class="cat-icon"><i class="fas fa-spray-can"></i></div><span class="cat-label">Herbicides</span></a>
+    <a href="#products" class="cat-item"><div class="cat-icon"><i class="fas fa-bug"></i></div><span class="cat-label">Insecticides</span></a>
+    <a href="#products" class="cat-item"><div class="cat-icon"><i class="fas fa-shield-alt"></i></div><span class="cat-label">Fungicides</span></a>
+</div>
+
+<section id="about">
+    <div class="about-text fade-up">
+        <div class="sec-eyebrow">Who We Are</div>
+        <h2 class="sec-title">Agricultural <span class="green">Supplies</span><br>You Can Trust</h2>
+        <p class="about-body">Irio Seeds &amp; AgroChem is a dedicated agricultural distributor based at Phakalane Industrial, Gaborone. We supply a comprehensive range of crop inputs — from certified seeds to crop protection chemicals — to support farmers and agribusinesses throughout Botswana.</p>
+        <p class="about-body">Our goal is to make quality agricultural products accessible and affordable, backed by knowledgeable service that helps our customers get the most out of every growing season.</p>
+        <div class="about-features">
+            <div class="about-feat"><i class="fas fa-check-circle"></i><div><h4>Quality Products</h4><p>Certified seeds and approved agrochemicals from reputable suppliers.</p></div></div>
+            <div class="about-feat"><i class="fas fa-truck"></i><div><h4>Reliable Supply</h4><p>Consistent stock availability to meet your seasonal demands on time.</p></div></div>
+            <div class="about-feat"><i class="fas fa-comments"></i><div><h4>Expert Advice</h4><p>Our team is ready to help you choose the right products for your crops.</p></div></div>
+        </div>
+    </div>
+    <div class="about-visual-box fade-up" style="transition-delay:0.2s;">
+        <div class="about-logo-display">
+            <img src="1000630561.jpg" alt="Irio Seeds & AgroChem">
+            <div class="about-company-name">Irio <span>Seeds</span><br>&amp; AgroChem</div>
+            <p class="about-tagline">Growing Botswana, one harvest at a time</p>
+            <div class="about-address">
+                <span><i class="fas fa-map-marker-alt"></i>Plot 43174, Phakalane Industrial, Gaborone</span>
+                <span><i class="fas fa-phone"></i>311 2095</span>
+                <span><i class="fab fa-whatsapp"></i>+267 71 381 526</span>
+                <span><i class="fas fa-envelope"></i>admin@iriosolutions.com</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="products">
+    <div class="products-header fade-up">
+        <div>
+            <div class="sec-eyebrow">What We Sell</div>
+            <h2 class="sec-title">Our <span class="green">Products</span></h2>
+        </div>
+        <p class="products-note">Full product catalogue and pricing coming soon. Contact us on WhatsApp for current stock and quotes.</p>
+    </div>
+    <div class="filter-tabs fade-up" style="transition-delay:0.1s;">
+        <div class="filter-tab active" onclick="filterProducts('all',this)">All Products</div>
+        <div class="filter-tab" onclick="filterProducts('seeds',this)">Seeds</div>
+        <div class="filter-tab" onclick="filterProducts('fertilizers',this)">Fertilizers</div>
+        <div class="filter-tab" onclick="filterProducts('herbicides',this)">Herbicides</div>
+        <div class="filter-tab" onclick="filterProducts('insecticides',this)">Insecticides</div>
+        <div class="filter-tab" onclick="filterProducts('fungicides',this)">Fungicides</div>
+    </div>
+    <!-- ============================================================ -->
+    <!-- PRODUCTS ARRAY — Replace placeholder objects with real data  -->
+    <!-- when catalogue arrives. Fields:                              -->
+    <!--   name     : product name (string)                          -->
+    <!--   category : seeds | fertilizers | herbicides |             -->
+    <!--              insecticides | fungicides                       -->
+    <!--   desc     : short description (string)                     -->
+    <!--   price    : number (e.g. 49.99) or null for "POA"          -->
+    <!--   unit     : e.g. "/ 25kg bag" or "/ litre"                 -->
+    <!--   icon     : Font Awesome class e.g. "fas fa-seedling"       -->
+    <!-- ============================================================ -->
+    <div id="products-grid" class="products-grid fade-up" style="transition-delay:0.2s;"></div>
+</section>
+
+<div class="price-banner fade-up">
+    <div class="price-banner-text">
+        <h3>Need a Price List or Bulk Quote?</h3>
+        <p>Our full catalogue with current pricing is available on request. Reach out via WhatsApp or email and our team will get back to you promptly.</p>
+    </div>
+    <div class="price-banner-actions">
+        <a href="https://wa.me/26771381526" target="_blank" class="btn-wa-lg"><i class="fab fa-whatsapp"></i> WhatsApp for Prices</a>
+        <a href="mailto:admin@iriosolutions.com" class="btn-outline-white"><i class="fas fa-envelope"></i> Email Us</a>
+    </div>
+</div>
+
+<section id="contact">
+    <div class="fade-up" style="margin-bottom:48px;">
+        <div class="sec-eyebrow">Get In Touch</div>
+        <h2 class="sec-title">Contact <span class="green">Irio</span></h2>
+    </div>
+    <div class="contact-grid">
+        <div class="contact-cards fade-up">
+            <a href="https://wa.me/26771381526" target="_blank" class="contact-card">
+                <div class="contact-card-icon cc-wa"><i class="fab fa-whatsapp"></i></div>
+                <div class="contact-card-text"><h4>WhatsApp</h4><p>+267 71 381 526</p></div>
+            </a>
+            <a href="tel:3112095" class="contact-card">
+                <div class="contact-card-icon cc-phone"><i class="fas fa-phone"></i></div>
+                <div class="contact-card-text"><h4>Landline</h4><p>311 2095</p></div>
+            </a>
+            <a href="mailto:admin@iriosolutions.com" class="contact-card">
+                <div class="contact-card-icon cc-email"><i class="fas fa-envelope"></i></div>
+                <div class="contact-card-text"><h4>Email</h4><p>admin@iriosolutions.com</p></div>
+            </a>
+            <div class="contact-card" style="cursor:default;">
+                <div class="contact-card-icon cc-loc"><i class="fas fa-map-marker-alt"></i></div>
+                <div class="contact-card-text"><h4>Address</h4><p>Plot 43174, Phakalane Industrial<br>Gaborone, Botswana</p></div>
+            </div>
+        </div>
+        <div class="map-box fade-up" style="transition-delay:0.2s;">
+            <i class="fas fa-map-marker-alt"></i>
+            <div class="map-addr"><span>Our Location</span>Plot 43174<br>Phakalane Industrial<br>Gaborone, Botswana</div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="footer-top">
+        <div class="footer-brand">
+            <div class="footer-brand-logo">
+                <img src="1000630561.jpg" alt="Irio Logo">
+                <div><span class="fn">Irio Seeds &amp; AgroChem</span><span class="fs">Agricultural Distributor · Botswana</span></div>
+            </div>
+            <p>Quality seeds, fertilizers, herbicides, insecticides and fungicides for farmers and agribusinesses across Botswana. Based in Phakalane Industrial, Gaborone.</p>
+        </div>
+        <div class="footer-col">
+            <h4>Quick Links</h4>
+            <ul class="footer-links">
+                <li><a href="#about"><i class="fas fa-chevron-right"></i>About Us</a></li>
+                <li><a href="#products"><i class="fas fa-chevron-right"></i>Products</a></li>
+                <li><a href="#contact"><i class="fas fa-chevron-right"></i>Contact</a></li>
+                <li><a href="https://wa.me/26771381526" target="_blank"><i class="fab fa-whatsapp"></i>WhatsApp</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Contact</h4>
+            <ul class="footer-links">
+                <li><a href="https://wa.me/26771381526" target="_blank"><i class="fab fa-whatsapp"></i>+267 71 381 526</a></li>
+                <li><a href="tel:3112095"><i class="fas fa-phone"></i>311 2095</a></li>
+                <li><a href="mailto:admin@iriosolutions.com"><i class="fas fa-envelope"></i>admin@iriosolutions.com</a></li>
+                <li><a href="#"><i class="fas fa-map-marker-alt"></i>Phakalane Industrial, Gaborone</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2026 Irio Seeds &amp; AgroChem. All rights reserved.</p>
+        <a href="https://wa.me/26771381526" target="_blank" class="footer-wa-btn"><i class="fab fa-whatsapp"></i> Chat on WhatsApp</a>
+    </div>
+</footer>
+
+<script>
+    // ============================================================
+    // PRODUCTS ARRAY — Fill this in when the catalogue arrives
+    // ============================================================
+    const products = [
+        { name: "Product Name", category: "seeds", desc: "Description and details will be added once the catalogue is available.", price: null, unit: "/ unit", icon: "fas fa-seedling" },
+        { name: "Product Name", category: "seeds", desc: "Description and details will be added once the catalogue is available.", price: null, unit: "/ unit", icon: "fas fa-seedling" },
+        { name: "Product Name", category: "fertilizers", desc: "Description and details will be added once the catalogue is available.", price: null, unit: "/ bag", icon: "fas fa-flask" },
+        { name: "Product Name", category: "fertilizers", desc: "Description and details will be added once the catalogue is available.", price: null, unit: "/ bag", icon: "fas fa-flask" },
+        { name: "Product Name", category: "herbicides", desc: "Description and details will be added once the catalogue is available.", price: null, unit: "/ litre", icon: "fas fa-spray-can" },
+        { name: "Product Name", category: "herbicides", desc: "Description and details will be added once the catalogue is available.", price: null, unit: "/ litre", icon: "fas fa-spray-can" },
+        { name: "Product Name", category: "insecticides", desc: "Description and details will be added once the catalogue is available.", price: null, unit: "/ litre", icon: "fas fa-bug" },
+        { name: "Product Name", category: "fungicides", desc: "Description and details will be added once the catalogue is available.", price: null, unit: "/ litre", icon: "fas fa-shield-alt" },
+    ];
+
+    function renderProducts(filter) {
+        const grid = document.getElementById('products-grid');
+        const list = filter === 'all' ? products : products.filter(p => p.category === filter);
+        grid.innerHTML = list.map(p => `
+            <div class="product-card">
+                <div class="product-img">
+                    <i class="${p.icon}"></i>
+                    <div class="product-cat-tag">${p.category}</div>
+                </div>
+                <div class="product-body">
+                    <div class="product-name">${p.name}</div>
+                    <div class="product-desc">${p.desc}</div>
+                    <div class="product-footer">
+                        <div class="product-price">
+                            ${p.price ? 'P ' + p.price.toFixed(2) : 'POA'}
+                            <div class="unit">${p.unit}</div>
+                        </div>
+                        <a href="https://wa.me/26771381526?text=Hi%2C%20I%27d%20like%20to%20enquire%20about%20${encodeURIComponent(p.name)}" target="_blank" class="product-enquire">
+                            Enquire <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>`).join('');
+    }
+
+    function filterProducts(cat, el) {
+        document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+        el.classList.add('active');
+        renderProducts(cat);
+    }
+
+    renderProducts('all');
+
+    // Hero animated field lines
+    const field = document.getElementById('heroField');
+    for (let i = 0; i < 30; i++) {
+        const line = document.createElement('div');
+        line.className = 'field-line';
+        const h = Math.random() * 55 + 20;
+        line.style.cssText = `left:${(i/30)*100}%;--h:${h}%;animation-delay:${i*0.07}s;opacity:0;`;
+        field.appendChild(line);
+    }
+
+    // Mobile menu
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+    function closeMobile() { mobileMenu.classList.remove('open'); }
+
+    // Scroll fade-in
+    const faders = document.querySelectorAll('.fade-up');
+    const obs = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+    }, { threshold: 0.08 });
+    faders.forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
